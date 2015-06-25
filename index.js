@@ -10,13 +10,13 @@ async()
 	.set('output', 'data/database-analysis.csv')
 	.set('refs', [])
 	.set('dbs', [
-		{id: 'db-a', title: 'DB-A', file: 'data/db-a.xml'},
-		/*{id: 'db-b', title: 'DB-B', file: 'data/db-b.xml'},
-		{id: 'db-c', title: 'DB-C', file: 'data/db-c.xml'},
-		{id: 'db-d', title: 'DB-D', file: 'data/db-d.xml'},
-		{id: 'db-e', title: 'DB-E', file: 'data/db-e.xml'},
-		{id: 'db-f', title: 'DB-F', file: 'data/db-f.xml'},
-		{id: 'db-g', title: 'DB-G', file: 'data/db-g.xml'},*/
+		{id: 'cochrane', title: 'Cochrane', file: 'data/Cochrane Library CDSR HTA DARE.xml'},
+		{id: 'dare', title: 'DARE', file: 'data/DARE.xml'},
+		{id: 'embase', title: 'Embase', file: 'data/Embase.xml'},
+		{id: 'epistemonikos', title: 'Epistemonikos', file: 'data/Epistemonikos.xml'},
+		{id: 'medline', title: 'Medline Ovid', file: 'data/Medline Ovid.xml'},
+		{id: 'pubmed-health', title: 'PubMed Health', file: 'data/PubMed Health.xml'},
+		{id: 'trip', title: 'TRIP', file: 'data/TRIP.xml'},
 	])
 	.forEach('dbs', function(next, db) {
 		console.log(colors.grey('Processing database file'), colors.grey(db.file));
