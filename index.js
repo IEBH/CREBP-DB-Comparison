@@ -37,7 +37,7 @@ async()
 				var queryTitle = newRef.title
 					.replace(/[^A-Z0-9]+/i, ' ');
 				// }}}
-				var found = _.find(self.refs.find, function(existingRef) {
+				var found = _.find(self.refs, function(existingRef) {
 					return existingRef.titleQuery == queryTitle;
 				});
 				// }}}
