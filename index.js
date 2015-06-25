@@ -58,22 +58,22 @@ async()
 	})
 	.then(function(next) {
 		var self = this;
-		var csv = fs.createWriteStream(self.output)
-			.on('error', next)
-			.on('finish', next);
+		var csv = fs.openSync(self.output, 'w');
+		console.log(colors.grey('Writing CSV file'));
 
 		// Write header {{{
-		csv.write(['Paper Title'].concat(self.dbs.map(function(db) {
+		fs.writeSync(csv, ['Paper Title'].concat(self.dbs.map(function(db) {
 			return db.title;
 		})).join(',') + "\n");
 		// }}}
 		self.refs.forEach(function(ref, index) {
-			csv.write(['\"' + ref.title + '\"'].concat(self.dbs.map(function(db) {
+			fs.writeSync(csv, ['\"' + ref.title + '\"'].concat(self.dbs.map(function(db) {
 				return ref.sources[db.id] || 'Missing';
 			})).join(',') + "\n");
 		});
 
-		csv.end();
+		fs.closeSync(csv);
+		next();
 	})
 	.end(function(err) {
 		if (err) {
@@ -83,7 +83,7 @@ async()
 
 		console.log();
 		console.log(colors.green('Completed'));
-		console.log(colors.cyan(this.refs.length), 'references processed from', colors.cyan(this.dbs.length), 'databases');
+		console.log(colors.cyan(this.refs.length), 'unqiue references processed from', colors.cyan(this.dbs.length), 'databases');
 		console.log('Analysis file saved to', colors.cyan(this.output));
 		process.exit(1);
 	});
