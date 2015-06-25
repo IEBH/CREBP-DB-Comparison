@@ -30,10 +30,13 @@ async()
 				refCount++;
 				// Try to find an existing similar ref {{{
 				if (!newRef.title) {
-					console.log('SKIP', newRef);
+					console.log('Skipping blank title');
 					return;
 				}
-				var queryTitle = newRef.title.replace(/[^A-Z0-9]+/i, ' ');
+				// Generate a searchable title to match by {{{
+				var queryTitle = newRef.title
+					.replace(/[^A-Z0-9]+/i, ' ');
+				// }}}
 				var found = _.find(self.refs.find, function(existingRef) {
 					return existingRef.titleQuery == queryTitle;
 				});
