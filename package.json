@@ -1,0 +1,21 @@
+{
+  "name": "db-comparison-project",
+  "version": "1.0.0",
+  "description": "Project to analyse the number of databases required to obtain all relevent citations for a systematic review",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [
+    "systematic",
+    "review",
+    "research"
+  ],
+  "author": "Matt Carter <m@ttcarter.com>",
+  "license": "MIT",
+  "dependencies": {
+    "async-chainable": "^1.7.11",
+    "colors": "^1.1.2",
+    "reflib": "^1.0.8"
+  }
+}
