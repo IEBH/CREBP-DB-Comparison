@@ -22,6 +22,7 @@ async()
 		console.log(colors.grey('Processing database file'), colors.grey(db.file));
 		var self = this;
 		var refCount = 0;
+		var conflictCount = 0;
 		reflib.parseFile(db.file)
 			.on('error', function(err) {
 				next(err);
@@ -43,7 +44,12 @@ async()
 				// }}}
 
 				if (found) { // Found existing - merge
-					found.sources[db.id] = newRef.notes;
+					if (found.sources[db.id] && found.sources[db.id] != newRef.notes) { // Overwriting existing ref
+						found.sources[db.id] = 'CONFLICT';
+						conflictCount++;
+					} else {
+						found.sources[db.id] = newRef.notes;
+					}
 				} else { // No existing one located - create new
 					newRef.sources = {};
 					newRef.sources[db.id] = newRef.notes;
@@ -53,6 +59,7 @@ async()
 			})
 			.on('end', function() {
 				console.log('Extracted', colors.cyan(refCount), 'from', colors.cyan(db.file));
+				if (conflictCount > 0) console.log('Conflicts:', colors.cyan(conflictCount), 'in', colors.cyan(db.file));
 				next();
 			});
 	})
