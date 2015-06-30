@@ -28,7 +28,7 @@ Paper Title,Cochrane,DARE,Embase,Epistemonikos,Medline Ovid,PubMed Health,TRIP
 "Sildenafil citrate (Revatio®) solution (Structured abstract)",Exclude,Missing,Missing,Missing,Missing,Missing,Missing
 "Valsartan (Diovan®) (Structured abstract)",Exclude,Missing,Missing,Missing,Missing,Missing,Missing
 "Blood pressure monitoring chairs to identify hypertension: a review of the clinical effectiveness and guidelines (Structured abstract)",Exclude,Missing,Missing,Missing,Missing,Missing,Missing
-"Twenty-four-hour ambulatory blood pressure monitoring in hypertension: an evidence-based analysis (Structured abstract)",Exclude,Missing,Missing,Missing,Missing,Missing,Missing
+"Twenty-four-hour ambulatory blood pressure monitoring in hypertension: an evidence-based analysis (Structured abstract)",CONFLICT,Missing,Missing,Missing,Missing,Missing,Missing
 "Overview of the use of antihypertensive agents by adults covered by the Québec public prescription drug insurance plan (Structured abstract)",Exclude,Missing,Missing,Missing,Missing,Missing,Missing
 "Ramipril 2.5 mg/5 ml oral solution (Structured abstract)",Exclude,Missing,Missing,Missing,Missing,Missing,Missing
 "Sildenafil (Revatio) 10mg/ml powder for oral suspension (Structured abstract)",Exclude,Missing,Missing,Missing,Missing,Missing,Missing
@@ -154,7 +154,7 @@ Paper Title,Cochrane,DARE,Embase,Epistemonikos,Medline Ovid,PubMed Health,TRIP
 "Blood pressure lowering efficacy of drugs inhibiting the renin-angiotensin system as second-line therapy for primary hypertension",Exclude,Exclude,Include,Missing,Missing,Missing,Missing
 "Blood pressure lowering efficacy of calcium-channel blockers as second-line therapy for primary hypertension",Exclude,Exclude,Include,Missing,Missing,Missing,Missing
 "Blood pressure lowering efficacy of beta-blockers as second-line therapy for primary hypertension",Include,Include,Include,Missing,Include,Missing,Include
-"Blood pressure lowering efficacy of diuretics as second-line therapy for primary hypertension",Include,Include,Include,Missing,Include,Missing,Include
+"Blood pressure lowering efficacy of diuretics as second-line therapy for primary hypertension",Include,Include,CONFLICT,Missing,Include,Missing,Include
 "Calcium channel blockers versus other classes of drugs for hypertension",Include,Exclude,Include,Include,Exclude,Exclude,Include
 "Laparoscopic splenectomy with or without devascularization of the stomach for liver cirrhosis and portal hypertension: a systematic review (Provisional abstract)",Exclude,Missing,Missing,Missing,Missing,Missing,Missing
 "Association between body mass index and cardiovascular disease mortality in east Asians and south Asians: pooled analysis of prospective data from the Asia Cohort Consortium (Provisional abstract)",Exclude,Missing,Missing,Missing,Missing,Missing,Missing
@@ -260,13 +260,13 @@ Paper Title,Cochrane,DARE,Embase,Epistemonikos,Medline Ovid,PubMed Health,TRIP
 "Time course for blood pressure lowering of dihydropyridine calcium channel blockers",Exclude,Exclude,Exclude,Exclude,Exclude,Missing,Missing
 "Blood biomarkers and their potential role in pulmonary arterial hypertension associated with congenital heart disease. A systematic review (Provisional abstract)",Exclude,Missing,Missing,Missing,Missing,Missing,Missing
 "Self-monitoring and other non-pharmacological interventions to improve the management of hypertension in primary care: a systematic review (Structured abstract)",Include,Missing,Missing,Missing,Missing,Missing,Missing
-"Interventions used to improve control of blood pressure in patients with hypertension",Include,Include,Exclude,Include,Include,Missing,Missing
+"Interventions used to improve control of blood pressure in patients with hypertension",Include,Include,CONFLICT,Include,Include,Missing,Missing
 "Pharmacotherapy for hyperuricemia in hypertensive patients",Include,Include,Exclude,Exclude,Exclude,Include,Missing
 "Cyclosporin A for primary biliary cirrhosis",Exclude,Exclude,Exclude,Exclude,Exclude,Missing,Exclude
 "Blood pressure targets for the treatment of patients with hypertension and cardiovascular disease",Exclude,Exclude,Missing,Missing,Missing,Missing,Missing
 "Renal sympathetic denervation for treatment of resistant hypertension: a systematic review (Provisional abstract)",Exclude,Missing,Missing,Missing,Missing,Missing,Missing
 "Effects of low-sodium diet vs high-sodium diet on blood pressure, renin, aldosterone, catecholamines, cholesterol, and triglyceride (Cochrane review) (Structured abstract)",Include,Missing,Missing,Missing,Missing,Missing,Missing
-"Effects of low sodium diet versus high sodium diet on blood pressure, renin, aldosterone, catecholamines, cholesterol, and triglyceride",Include,Include,Include,Missing,Include,Missing,Include
+"Effects of low sodium diet versus high sodium diet on blood pressure, renin, aldosterone, catecholamines, cholesterol, and triglyceride",Include,Include,Include,Missing,Include,Missing,CONFLICT
 "Pharmaceutical policies: effects of restrictions on reimbursement",Exclude,Exclude,Exclude,Missing,Missing,Missing,Missing
 "The effects of biofeedback for the treatment of essential hypertension: a systematic review (Structured abstract)",Include,Missing,Missing,Missing,Missing,Missing,Missing
 "New-onset diabetes and antihypertensive treatment (Structured abstract)",Exclude,Missing,Missing,Missing,Missing,Missing,Missing
@@ -308,14 +308,14 @@ Paper Title,Cochrane,DARE,Embase,Epistemonikos,Medline Ovid,PubMed Health,TRIP
 "Beta-blockers in heart failure: benefits of beta-blockers according to varying male proportions of study patients (Structured abstract)",Exclude,Missing,Missing,Missing,Missing,Missing,Missing
 "Treatment of elderly hypertensive patients with epithelial sodium channel inhibitors combined with a thiazide diuretic reduces coronary mortality and sudden cardiac death (Structured abstract)",Include,Missing,Missing,Missing,Missing,Missing,Missing
 "Analyzing the short-term effect of placebo therapy in pulmonary arterial hypertension: potential implications for the design of future clinical trials (Structured abstract)",Exclude,Missing,Missing,Missing,Missing,Missing,Missing
-"Blood pressure lowering efficacy of potassium-sparing diuretics (that block the epithelial sodium channel) for primary hypertension",Include,Include,Include,Missing,Include,Missing,Missing
-"Blood pressure lowering efficacy of alpha blockers for primary hypertension",Include,Include,Include,Include,Include,Missing,Include
-"Blood pressure lowering efficacy of angiotensin converting enzyme (ACE) inhibitors for primary hypertension",Include,Include,Include,Include,Include,Missing,Include
+"Blood pressure lowering efficacy of potassium-sparing diuretics (that block the epithelial sodium channel) for primary hypertension",Include,Include,CONFLICT,Missing,Include,Missing,Missing
+"Blood pressure lowering efficacy of alpha blockers for primary hypertension",Include,Include,CONFLICT,Include,Include,Missing,Include
+"Blood pressure lowering efficacy of angiotensin converting enzyme (ACE) inhibitors for primary hypertension",Include,Include,CONFLICT,Include,Include,Missing,Include
 "Blood pressure lowering efficacy of angiotensin receptor blockers for primary hypertension",Include,Include,Include,Include,Include,Missing,Include
 "Treatment of pulmonary arterial hypertension in Poland - current practice. Survey results (Structured abstract)",Exclude,Missing,Missing,Missing,Missing,Missing,Missing
 "Use of bosentan, epoprostenol, iloprost, sildenafil and treprostinil in treatment of pulmonary arterial hypertension in Poland. Budget impact analysis (Structured abstract)",Exclude,Missing,Missing,Missing,Missing,Missing,Missing
 "Magnesium sulfate for persistent pulmonary hypertension of the newborn",Exclude,Exclude,Exclude,Exclude,Exclude,Exclude,Exclude
-"Blood pressure lowering efficacy of coenzyme Q10 for primary hypertension",Include,Include,Include,Include,Include,Missing,Include
+"Blood pressure lowering efficacy of coenzyme Q10 for primary hypertension",Include,Include,CONFLICT,Include,Include,Missing,Include
 "The efficacy and harm of prostaglandin analogues for IOP reduction in glaucoma patients compared to dorzolamide and brimonidine: a systematic review (Structured abstract)",Exclude,Missing,Missing,Missing,Missing,Missing,Missing
 "Relative effectiveness of clinic and home blood pressure monitoring compared with ambulatory blood pressure monitoring in diagnosis of hypertension: systematic review (Structured abstract)",Exclude,Missing,Missing,Missing,Missing,Missing,Missing
 "Corticosteroid therapy for nephrotic syndrome in children",Exclude,Exclude,Exclude,Exclude,Exclude,Missing,Exclude
@@ -361,7 +361,7 @@ Paper Title,Cochrane,DARE,Embase,Epistemonikos,Medline Ovid,PubMed Health,TRIP
 "Effects of vitamin C supplementation on blood pressure: a meta-analysis of randomized controlled trials (Provisional abstract)",Include,Missing,Missing,Missing,Missing,Missing,Missing
 "Should BP targets be lower in diabetic patients with microalbuminuria or nephropathy: a systematic review of randomised controlled trials (Provisional abstract)",Exclude,Missing,Missing,Missing,Missing,Missing,Missing
 "Hypertonic saline versus mannitol for the treatment of elevated intracranial pressure: a meta-analysis of randomized clinical trials (Provisional abstract)",Exclude,Missing,Missing,Missing,Missing,Missing,Missing
-"Hydralazine for essential hypertension",Include,Include,Exclude,Include,Include,Missing,Missing
+"Hydralazine for essential hypertension",Include,Include,CONFLICT,Include,Include,Missing,Missing
 "Phosphodiesterase 5 inhibitors for pulmonary hypertension",Exclude,Exclude,Missing,Missing,Missing,Missing,Missing
 "A systematic review and meta-analysis of abdominal compartment syndrome after endovascular repair of ruptured abdominal aortic aneurysms (Provisional abstract)",Exclude,Missing,Missing,Missing,Missing,Missing,Missing
 "A meta-analysis and metaregression analysis of factors influencing mortality after endovascular repair of ruptured abdominal aortic aneurysms (Structured abstract)",Exclude,Missing,Missing,Missing,Missing,Missing,Missing
@@ -693,7 +693,7 @@ Paper Title,Cochrane,DARE,Embase,Epistemonikos,Medline Ovid,PubMed Health,TRIP
 "Self-measured blood pressure monitoring in the management of hypertension: a systematic review and meta-analysis (Structured abstract)",Include,Missing,Missing,Missing,Missing,Missing,Missing
 "Endovascular versus conventional medical treatment for uncomplicated chronic type B aortic dissection",Exclude,Missing,Missing,Missing,Missing,Missing,Missing
 "Systematic review: blood pressure target in chronic kidney disease and proteinuria as an effect modifier (Structured abstract)",Exclude,Missing,Missing,Missing,Missing,Missing,Missing
-"Fermented milk for hypertension",Include,Include,Include,Include,Include,Include,Include
+"Fermented milk for hypertension",Include,Include,CONFLICT,Include,Include,Include,Include
 "Angiotensin-converting enzyme inhibitors reduce mortality in hypertension: a meta-analysis of randomized clinical trials of renin-angiotensin-aldosterone system inhibitors involving 158 998 patients (Structured abstract)",Exclude,Missing,Missing,Missing,Missing,Missing,Missing
 "Effect of CPAP on blood pressure in patients with obstructive sleep apnea and resistant hypertension: a systematic review and meta-analysis (Provisional abstract)",Exclude,Missing,Missing,Missing,Missing,Missing,Missing
 "Reno-protective effects of renin-angiotensin system blockade in type 2 diabetic patients: a systematic review and network meta-analysis (Structured abstract)",Exclude,Missing,Missing,Missing,Missing,Missing,Missing
@@ -1079,7 +1079,7 @@ Paper Title,Cochrane,DARE,Embase,Epistemonikos,Medline Ovid,PubMed Health,TRIP
 "Effect on health-related outcomes of interventions to alter the interaction between patients and practitioners: a systematic review of trials",Missing,Exclude,Missing,Missing,Missing,Missing,Exclude
 "Effect of melatonin on nocturnal blood pressure: meta-analysis of randomized controlled trials",Missing,Exclude,Include,Exclude,Exclude,Include,Exclude
 "Are calcium antagonists beneficial in diabetic patients with hypertension?",Missing,Exclude,Exclude,Exclude,Exclude,Include,Exclude
-"Comparative clinical- and cost-effectiveness of candesartan and losartan in the management of hypertension and heart failure: a systematic review, meta- and cost-utility analysis",Missing,Include,Missing,Include,Exclude,Include,Include
+"Comparative clinical- and cost-effectiveness of candesartan and losartan in the management of hypertension and heart failure: a systematic review, meta- and cost-utility analysis",Missing,Include,Missing,Include,Exclude,Include,CONFLICT
 "Intravenous magnesium prevents atrial fibrillation after coronary artery bypass grafting: a meta-analysis of 7 double-blind, placebo-controlled, randomized clinical trials",Missing,Exclude,Missing,Missing,Missing,Missing,Exclude
 "The efficacy of pharmacotherapy for decreasing the expansion rate of abdominal aortic aneurysms: a systematic review and meta-analysis",Missing,Exclude,Missing,Missing,Missing,Missing,Exclude
 "Safety and tolerability evaluation of oral bosentan in adult congenital heart disease associated pulmonary arterial hypertension: a systematic review and meta-analysis",Missing,Exclude,Missing,Exclude,Missing,Exclude,Missing
@@ -1184,7 +1184,7 @@ Paper Title,Cochrane,DARE,Embase,Epistemonikos,Medline Ovid,PubMed Health,TRIP
 "Green tea catechins and blood pressure: a systematic review and meta-analysis of randomised controlled trials",Missing,Include,Missing,Missing,Missing,Missing,Missing
 "Effect of probiotics on blood pressure: a systematic review and meta-analysis of randomized, controlled trials",Missing,Include,Missing,Missing,Include,Missing,Missing
 "Meta-analysis of adverse cardiovascular events associated with echocardiographic contrast agents",Missing,Exclude,Missing,Missing,Missing,Missing,Exclude
-"Acupuncture for essential hypertension",Missing,Include,Missing,Include,Include,Include,Missing
+"Acupuncture for essential hypertension",Missing,Include,Missing,CONFLICT,Include,Include,Missing
 "Effect of sibutramine on weight loss and blood pressure: a meta-analysis of controlled trials",Missing,Exclude,Missing,Missing,Missing,Missing,Missing
 "Patent foramen ovale closure and medical treatments for secondary stroke prevention: a systematic review of observational and randomized evidence",Missing,Exclude,Missing,Missing,Missing,Missing,Exclude
 "The efficacy and safety of triple vs dual combination of angiotensin ii receptor blocker and calcium channel blocker and diuretic: a systematic review and meta-analysis",Missing,Include,Missing,Missing,Missing,Include,Missing
