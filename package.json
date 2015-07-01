@@ -7,15 +7,16 @@
     "test": "mocha"
   },
   "keywords": [
-    "systematic",
+    "research",
     "review",
-    "research"
+    "systematic"
   ],
   "author": "Matt Carter <m@ttcarter.com>",
   "license": "MIT",
   "dependencies": {
     "async-chainable": "^1.7.11",
     "colors": "^1.1.2",
+    "csv2array": "0.0.4",
     "reflib": "^1.0.8"
   }
 }
