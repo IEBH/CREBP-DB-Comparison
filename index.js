@@ -39,13 +39,16 @@ async()
 					.replace(/[^A-Z0-9]+/i, ' ');
 				// }}}
 				var found = _.find(self.refs, function(existingRef) {
-					return existingRef.titleQuery == queryTitle;
+					return (
+						existingRef.titleQuery == queryTitle &&
+						existingRef.journal == newRef.journal
+					)
 				});
 				// }}}
 
 				if (found) { // Found existing - merge
 					if (found.sources[db.id] && found.sources[db.id] != newRef.notes) { // Overwriting existing ref
-						found.sources[db.id] = 'CONFLICT';
+						found.sources[db.id] = 'DUPE';
 						conflictCount++;
 					} else {
 						found.sources[db.id] = newRef.notes;
@@ -74,9 +77,27 @@ async()
 		})).join(',') + "\n");
 		// }}}
 		self.refs.forEach(function(ref, index) {
-			fs.writeSync(csv, ['\"' + ref.title + '\"'].concat(self.dbs.map(function(db) {
-				return ref.sources[db.id] || 'Missing';
-			})).join(',') + "\n");
+			// Prepare fields {{{
+			var fields = [];
+			
+			// Title
+			fields.push('\"' + ref.title + '\"');
+
+			// Each DB's notes field
+			self.dbs.forEach(function(db) {
+				fields.push(ref.sources[db.id] || 'Missing');
+			});
+
+			// Whether all notes fields are equal
+			var includes = 0, excludes = 0;
+			self.dbs.forEach(function(db) {
+				if (!ref.sources[db.id]) return;
+				if (/^include/i.test(ref.sources[db.id])) includes++;
+				if (/^exclude/i.test(ref.sources[db.id])) excludes++;
+			});
+			fields.push(includes > 0 && excludes > 0 ? 'CONFLICT' : '');
+			// }}}
+			fs.writeSync(csv, fields.join(',') + "\n");
 		});
 
 		fs.closeSync(csv);
@@ -92,5 +113,5 @@ async()
 		console.log(colors.green('Completed'));
 		console.log(colors.cyan(this.refs.length), 'unqiue references processed from', colors.cyan(this.dbs.length), 'databases');
 		console.log('Analysis file saved to', colors.cyan(this.output));
-		process.exit(1);
+		process.exit(0);
 	});
