@@ -1,0 +1,9 @@
+{
+  "name": "crebp-db-comparison",
+  "version": "0.0.0",
+  "homepage": "http://crebp-sra.com",
+  "private": true,
+  "dependencies": {
+    "venn.js": "*"
+  }
+}
