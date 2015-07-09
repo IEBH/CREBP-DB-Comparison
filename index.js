@@ -3,11 +3,14 @@ var async = require('async-chainable');
 var colors = require('colors');
 var fs = require('fs');
 var reflib = require('reflib');
+var request = require('superagent');
 
 console.log('Beginning analysis');
 
 async()
-	.set('output', 'data/database-analysis.csv')
+	.set('outputCSV', 'data/database-analysis.csv')
+	.set('outputJSON', 'data/database-analysis.json')
+	.set('url', null) // Eventual URL when the library is loaded into the SRA
 	.set('refs', [])
 	.set('dbs', [
 		{id: 'cochrane', title: 'Cochrane', file: 'data/Cochrane Library CDSR HTA DARE.xml'},
@@ -66,42 +69,98 @@ async()
 				next();
 			});
 	})
-	.then(function(next) {
-		var self = this;
-		var csv = fs.openSync(self.output, 'w');
-		console.log(colors.grey('Writing CSV file'));
+	.parallel([
+		function(next) {
+			var self = this;
+			var csv = fs.openSync(self.outputCSV, 'w');
+			console.log(colors.grey('Writing CSV file'));
 
-		// Write header {{{
-		fs.writeSync(csv, ['Paper Title'].concat(self.dbs.map(function(db) {
-			return db.title;
-		})).join(',') + "\n");
-		// }}}
-		self.refs.forEach(function(ref, index) {
-			// Prepare fields {{{
-			var fields = [];
-			
-			// Title
-			fields.push('\"' + ref.title + '\"');
-
-			// Each DB's notes field
-			self.dbs.forEach(function(db) {
-				fields.push(ref.sources[db.id] || 'Missing');
-			});
-
-			// Whether all notes fields are equal
-			var includes = 0, excludes = 0;
-			self.dbs.forEach(function(db) {
-				if (!ref.sources[db.id]) return;
-				if (/^include/i.test(ref.sources[db.id])) includes++;
-				if (/^exclude/i.test(ref.sources[db.id])) excludes++;
-			});
-			fields.push(includes > 0 && excludes > 0 ? 'CONFLICT' : '');
+			// Write header {{{
+			fs.writeSync(csv, ['Paper Title'].concat(self.dbs.map(function(db) {
+				return db.title;
+			})).join(',') + "\n");
 			// }}}
-			fs.writeSync(csv, fields.join(',') + "\n");
-		});
+			self.refs.forEach(function(ref, index) {
+				// Prepare fields {{{
+				var fields = [];
+				
+				// Title
+				fields.push('\"' + ref.title + '\"');
 
-		fs.closeSync(csv);
-		next();
+				// Each DB's notes field
+				self.dbs.forEach(function(db) {
+					fields.push(ref.sources[db.id] || 'Missing');
+				});
+
+				// Whether all notes fields are equal
+				var includes = 0, excludes = 0;
+				self.dbs.forEach(function(db) {
+					if (!ref.sources[db.id]) return;
+					if (/^include/i.test(ref.sources[db.id])) includes++;
+					if (/^exclude/i.test(ref.sources[db.id])) excludes++;
+				});
+				fields.push(includes > 0 && excludes > 0 ? 'CONFLICT' : '');
+				// }}}
+				fs.writeSync(csv, fields.join(',') + "\n");
+			});
+
+			fs.closeSync(csv);
+			console.log(colors.grey('CSV file written'));
+			next();
+		},
+		function(next) {
+			var self = this;
+			async()
+				.then(function(next) {
+					console.log(colors.grey('Writing JSON file'));
+					reflib.outputFile(self.outputJSON, self.refs.map(function(ref) {
+						ref.tags = Object.keys(ref.sources).map(function(dbid) {
+							return _.find(self.dbs, {id: dbid}).title;
+						});
+						delete ref.sources;
+						return ref;
+					}), next);
+				})
+				.then(function(next) {
+					console.log(colors.grey('JSON file written'));
+					next();
+				})
+				.end(next);
+		},
+	])
+	.then(function(next) {
+		// Upload to SRA {{{
+		var self = this;
+		console.log(colors.grey('Uploading library to SRA'));
+		var agent = request.agent();
+		async()
+			.set('sraURL', 'http://localhost')
+			.then(function(next) {
+				console.log(colors.grey('SRA login'));
+				agent.post(this.sraURL + '/api/users/login')
+					.send({username: 'mc', password: 'qwaszx'})
+					.end(function(err, res) {
+						if (err) return next(err);
+						if (res.body.error) return next(res.body.error);
+						next();
+					});
+			})
+			.then(function(next) {
+				console.log(colors.grey('SRA login successful'));
+				console.log(colors.grey('SRA upload'));
+				agent.post(this.sraURL + '/api/libraries/import')
+					.field('libraryTitle', 'CREBP-DB-Comparison')
+					.field('json', 'true')
+					.attach('file', self.outputJSON)
+					.end(function(err, res) {
+						if (err) return next(err);
+						self.url = res.body.url;
+						console.log(colors.grey('SRA upload successful'));
+						next();
+					});
+			})
+			.end(next);
+		// }}}
 	})
 	.end(function(err) {
 		if (err) {
@@ -112,6 +171,8 @@ async()
 		console.log();
 		console.log(colors.green('Completed'));
 		console.log(colors.cyan(this.refs.length), 'unqiue references processed from', colors.cyan(this.dbs.length), 'databases');
-		console.log('Analysis file saved to', colors.cyan(this.output));
+		console.log('Analysis file saved to', colors.cyan(this.outputCSV));
+		console.log('Library file saved to', colors.cyan(this.outputJSON));
+		console.log('Library available at', colors.cyan(this.url));
 		process.exit(0);
 	});

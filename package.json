@@ -4,6 +4,7 @@
   "description": "Project to analyse the number of databases required to obtain all relevent citations for a systematic review",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "mocha"
   },
   "keywords": [
@@ -14,9 +15,10 @@
   "author": "Matt Carter <m@ttcarter.com>",
   "license": "MIT",
   "dependencies": {
-    "async-chainable": "^1.7.11",
+    "async-chainable": "^1.7.12",
     "colors": "^1.1.2",
     "csv2array": "0.0.4",
-    "reflib": "^1.0.8"
+    "reflib": "^1.1.1",
+    "superagent": "^1.2.0"
   }
 }
