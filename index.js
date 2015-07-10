@@ -58,7 +58,7 @@ async()
 
 				if (found) { // Found existing - merge
 					if (found.sources[db.id] && found.sources[db.id] != newRef.notes) { // Overwriting existing ref
-						found.sources[db.id] = 'DUPE';
+						found.sources[db.id] = 'Include'; // Always err to 'Include'
 						conflictCount++;
 					} else {
 						found.sources[db.id] = newRef.notes;
