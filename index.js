@@ -38,14 +38,21 @@ async()
 					return;
 				}
 				// Generate a searchable title to match by {{{
+				if (!newRef.title) newRef.title = '';
 				var queryTitle = newRef.title
-					.replace(/[^A-Z0-9]+/i, ' ');
+					.toLowerCase()
+					.replace(/[^A-Z0-9]+/, ' ');
+
+				if (!newRef.journal) newRef.journal = '';
+				var queryJournal = newRef.journal
+					.toLowerCase()
+					.replace(/[^A-Z0-9]+/, ' ');
 				// }}}
 				var found = _.find(self.refs, function(existingRef) {
 					return (
 						existingRef.titleQuery == queryTitle &&
-						existingRef.journal == newRef.journal
-					)
+						existingRef.journalQuery == queryJournal
+					);
 				});
 				// }}}
 
@@ -60,6 +67,7 @@ async()
 					newRef.sources = {};
 					newRef.sources[db.id] = newRef.notes;
 					newRef.titleQuery = queryTitle;
+					newRef.journalQuery = queryJournal;
 					self.refs.push(newRef);
 				}
 			})
@@ -76,7 +84,7 @@ async()
 			console.log(colors.grey('Writing CSV file'));
 
 			// Write header {{{
-			fs.writeSync(csv, ['Paper Title'].concat(self.dbs.map(function(db) {
+			fs.writeSync(csv, ['Paper Title', 'Journal'].concat(self.dbs.map(function(db) {
 				return db.title;
 			})).join(',') + "\n");
 			// }}}
@@ -86,6 +94,7 @@ async()
 				
 				// Title
 				fields.push('\"' + ref.title + '\"');
+				fields.push('\"' + ref.journal + '\"');
 
 				// Each DB's notes field
 				self.dbs.forEach(function(db) {
