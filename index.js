@@ -41,12 +41,12 @@ async()
 				if (!newRef.title) newRef.title = '';
 				var queryTitle = newRef.title
 					.toLowerCase()
-					.replace(/[^A-Z0-9]+/, ' ');
+					.replace(/[^a-z0-9]+/, ' ');
 
 				if (!newRef.journal) newRef.journal = '';
 				var queryJournal = newRef.journal
 					.toLowerCase()
-					.replace(/[^A-Z0-9]+/, ' ');
+					.replace(/[^a-z0-9]+/, ' ');
 				// }}}
 				var found = _.find(self.refs, function(existingRef) {
 					return (
@@ -59,6 +59,7 @@ async()
 				if (found) { // Found existing - merge
 					if (found.sources[db.id] && found.sources[db.id] != newRef.notes) { // Overwriting existing ref
 						found.sources[db.id] = 'Include'; // Always err to 'Include'
+						console.log('MERGE', colors.red(newRef.title), '<=>', colors.green(found.title));
 						conflictCount++;
 					} else {
 						found.sources[db.id] = newRef.notes;
@@ -182,6 +183,6 @@ async()
 		console.log(colors.cyan(this.refs.length), 'unqiue references processed from', colors.cyan(this.dbs.length), 'databases');
 		console.log('Analysis file saved to', colors.cyan(this.outputCSV));
 		console.log('Library file saved to', colors.cyan(this.outputJSON));
-		console.log('Library available at', colors.cyan(this.url));
+		console.log('Library available at', colors.cyan(this.url + '/tags'));
 		process.exit(0);
 	});
