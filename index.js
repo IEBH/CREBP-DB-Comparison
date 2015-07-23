@@ -41,7 +41,11 @@ async()
 				if (!newRef.title) newRef.title = '';
 				var queryTitle = newRef.title
 					.toLowerCase()
-					.replace(/[^a-z0-9]+/, ' ');
+					.replace(/[^a-z0-9]+/, ' ')
+					.replace(/[^a-z0-9]+/, '')
+					.replace(/\(.*?\)/, '')
+					.replace(/^\s+/, '')
+					.replace(/\s+$/, '');
 
 				if (!newRef.journal) newRef.journal = '';
 				var queryJournal = newRef.journal
@@ -50,8 +54,8 @@ async()
 				// }}}
 				var found = _.find(self.refs, function(existingRef) {
 					return (
-						existingRef.titleQuery == queryTitle &&
-						existingRef.journalQuery == queryJournal
+						existingRef.titleQuery == queryTitle
+						// existingRef.journalQuery == queryJournal
 					);
 				});
 				// }}}
@@ -123,13 +127,20 @@ async()
 			async()
 				.then(function(next) {
 					console.log(colors.grey('Writing JSON file'));
-					reflib.outputFile(self.outputJSON, self.refs.map(function(ref) {
-						ref.tags = Object.keys(ref.sources).map(function(dbid) {
-							return _.find(self.dbs, {id: dbid}).title;
-						});
-						delete ref.sources;
-						return ref;
-					}), next);
+					reflib.outputFile(self.outputJSON,
+						self.refs
+							.filter(function(ref) {
+								return (ref.sources && _(ref.sources).values().indexOf('Exclude') < 0);
+							})
+							.map(function(ref) {
+								ref.tags = Object.keys(ref.sources).map(function(dbid) {
+									return _.find(self.dbs, {id: dbid}).title;
+								});
+								delete ref.sources;
+								delete ref.notes;
+								return ref;
+							})
+					, next);
 				})
 				.then(function(next) {
 					console.log(colors.grey('JSON file written'));
