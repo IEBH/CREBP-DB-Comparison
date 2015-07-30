@@ -98,8 +98,8 @@ async()
 				var fields = [];
 				
 				// Title
-				fields.push('\"' + ref.title + '\"');
-				fields.push('\"' + ref.journal + '\"');
+				fields.push('\"' + ref.title.replace(/"/g, '\\"') + '\"');
+				fields.push('\"' + ref.journal.replace(/"/g, '\\"') + '\"');
 
 				// Each DB's notes field
 				self.dbs.forEach(function(db) {
