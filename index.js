@@ -130,7 +130,7 @@ async()
 					reflib.outputFile(self.outputJSON,
 						self.refs
 							.filter(function(ref) {
-								return (ref.sources && _(ref.sources).values().indexOf('Exclude') < 0);
+								return (ref.sources && _(ref.sources).values().indexOf('Include') > -1);
 							})
 							.map(function(ref) {
 								ref.tags = Object.keys(ref.sources).map(function(dbid) {
