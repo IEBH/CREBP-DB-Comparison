@@ -18,8 +18,8 @@ var parseXlsx = function(file){
 	return result;
 }
 
-var tSet = parseXlsx('T.xlsx');
-var ntSet = parseXlsx('NT.xlsx');
+var tSet = parseXlsx('data/T.xlsx');
+var ntSet = parseXlsx('data/NT.xlsx');
 
 // Walk over all records from NT and add to results
 var results = _.map(ntSet, function(row) {
