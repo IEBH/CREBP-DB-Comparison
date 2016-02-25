@@ -20,6 +20,7 @@ var parseXlsx = function(file){
 
 var tSet = parseXlsx('data/T.xlsx');
 var ntSet = parseXlsx('data/NT.xlsx');
+var stats = { conflicting: 0, matched: 0 };
 
 // Walk over all records from NT and add to results
 var results = _.map(ntSet, function(row) {
@@ -35,6 +36,7 @@ _.forEach(tSet, function(row) {
 	if (existingNt) { // Result set already exists in tSet
 		results.tTitle = row.title;
 		results.tDec = row.dec;
+		stats.matched++;
 	} else { // Not found - create new right-hand-side record
 		results.push({
 			tTitle: row.title,
@@ -51,6 +53,7 @@ results = _.map(results, function(row) {
 		row.result = '';
 	} else { // Decisions disagree
 		row.result = 'CONFLICT';
+		stats.conflicting++;
 	}
 	return row;
 });
@@ -62,5 +65,7 @@ json2csv({ data: results, fields: fields }, function(err, csv) {
 	fs.writeFile('output.csv', csv, function(err) {
 		if (err) throw err;
 		console.log('file saved');
+		console.log('Matched rows:', stats.matched);
+		console.log('Conflicting rows:', stats.conflicting);
 	});
 });
