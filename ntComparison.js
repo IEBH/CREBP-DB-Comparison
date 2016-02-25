@@ -59,7 +59,7 @@ results = _.map(results, function(row) {
 });
 
 // Transer results to output.csv
-var fields = ['ntTitle', 'ntDec', 'tTitle', 'tDec', 'result'];
+var fields = ['ntTitle', 'ntDec', 'result', 'tDec', 'tTitle'];
 json2csv({ data: results, fields: fields }, function(err, csv) {
 	if (err) console.log(err);
 	fs.writeFile('output.csv', csv, function(err) {
