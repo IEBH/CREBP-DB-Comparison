@@ -32,7 +32,31 @@ var results = _.map(ntSet, function(row) {
 
 // Walk over all T records and try to match against NT record
 _.forEach(tSet, function(row) {
-	var existingNt = _.find(results, {ntTitle: row.title});
+	// Locate existing record in results via a fuzzy search
+	var fuzzyMatcher = row.title
+		.toLowerCase()
+		.replace(/[^a-z0-9]+/, ' ')
+		.replace(/[^a-z0-9]+/, '')
+		.replace(/\(.*?\)/, '')
+		.replace(/^\s+/, '')
+		.replace(/\s+$/, '');
+
+	var existingNt = _.find(results, function(r) {
+		// Direct matching
+		if (!r.ntTitle) return false;
+		if (r.ntTitle == row.title) return true;
+
+		var fuzzyTitle = r.ntTitle
+			.toLowerCase()
+			.replace(/[^a-z0-9]+/, ' ')
+			.replace(/[^a-z0-9]+/, '')
+			.replace(/\(.*?\)/, '')
+			.replace(/^\s+/, '')
+			.replace(/\s+$/, '');
+
+		return (fuzzyMatcher == fuzzyTitle);
+	});
+
 	if (existingNt) { // Result set already exists in tSet
 		existingNt.tTitle = row.title;
 		existingNt.tDec = row.dec;
