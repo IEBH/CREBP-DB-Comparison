@@ -34,8 +34,8 @@ var results = _.map(ntSet, function(row) {
 _.forEach(tSet, function(row) {
 	var existingNt = _.find(results, {ntTitle: row.title});
 	if (existingNt) { // Result set already exists in tSet
-		results.tTitle = row.title;
-		results.tDec = row.dec;
+		existingNt.tTitle = row.title;
+		existingNt.tDec = row.dec;
 		stats.matched++;
 	} else { // Not found - create new right-hand-side record
 		results.push({
