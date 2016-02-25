@@ -1,0 +1,21 @@
+var xlsx = require('node-xlsx');
+var _ = require('lodash');
+
+var obj = xlsx.parse('test.xlsx'); // parses a file
+//console.log(obj[0].data);
+
+var tSet = _.map(obj[0].data, function(row) {
+	return {
+		title: row[0],
+		dec: row[1],
+	};
+});
+tSet = _.drop(tSet);
+console.log(tSet);
+
+
+var parseXlsx = function(a,b){
+	console.log(a+b);
+}
+
+parseXlsx(1,2);

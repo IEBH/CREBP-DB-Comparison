@@ -1,0 +1,13 @@
+var Excel = require("exceljs");
+var _ = require('lodash');
+
+// read from a file
+var filename = "test.xlsx";
+var workbook = new Excel.Workbook();
+workbook.xlsx.readFile(filename)
+	.then(function() {
+		var worksheet = workbook.getWorksheet(1);
+		var columns = worksheet.getColumn("Title")
+		console.log(columns);
+	});
+
